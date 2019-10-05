@@ -3,6 +3,9 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import LoginForm
 
+def registration(request):
+    return render(request, 'registration.html')
+
 def login(request):
     if request.user.is_authenticated:
         return redirect(reverse('home'))
