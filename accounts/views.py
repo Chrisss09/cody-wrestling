@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, RegisterUserForm
 
 def registration(request):
-    return render(request, 'registration.html')
+    registration_form = RegisterUserForm()
+    return render(request, 'registration.html', {'registration_form':registration_form})
 
 def login(request):
     if request.user.is_authenticated:
