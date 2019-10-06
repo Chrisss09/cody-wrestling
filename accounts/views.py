@@ -4,7 +4,26 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import LoginForm, RegisterUserForm
 
 def registration(request):
-    registration_form = RegisterUserForm()
+    if request.user.is_authenticated:
+        return redirect(reverse('home'))
+
+    if request.method =='POST':
+        registration_form = RegisterUserForm(request.POST)
+
+        if registration_form.is_valid():
+            registration_form.save()
+
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
+
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, 'Registration was successfull')
+                return redirect(reverse('home'))
+            else:
+                messages.error(request, 'Unable to register your account at this time')
+    else:
+        registration_form = RegisterUserForm()
+        
     return render(request, 'registration.html', {'registration_form':registration_form})
 
 def login(request):
