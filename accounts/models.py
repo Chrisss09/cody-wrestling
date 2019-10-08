@@ -3,9 +3,6 @@ import django.utils.timezone
 from django.contrib.auth.models import AbstractUser
 
 class UserRegistrationModel(AbstractUser):
-    first_name = models.CharField(max_length=40, blank=False)
-    last_name = models.CharField(max_length=40, blank=False)
-    email = models.EmailField(max_length=254, unique=True, verbose_name='email address')
     street_address_1 = models.CharField(max_length=40, blank=False)
     street_address_2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
