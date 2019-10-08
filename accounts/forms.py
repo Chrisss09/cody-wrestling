@@ -8,28 +8,33 @@ from .models import UserRegistrationModel
 
 User = get_user_model()
 
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+
 class RegisterUserForm(UserCreationForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label='Confirm password',
+        widget=forms.PasswordInput)
 
     class Meta:
         model = UserRegistrationModel
         fields = [
             'first_name',
             'last_name',
-            'email', 
-            'username', 
-            'street_address_1', 
-            'street_address_2', 
-            'county', 
+            'email',
+            'username',
+            'street_address_1',
+            'street_address_2',
+            'county',
             'town_or_City',
             'postcode',
             'phone_number',
         ]
+
 
 class RegisterUserChangeForm(UserChangeForm):
     class Meta:
@@ -37,16 +42,16 @@ class RegisterUserChangeForm(UserChangeForm):
         fields = [
             'first_name',
             'last_name',
-            'email', 
-            'username', 
-            'street_address_1', 
-            'street_address_2', 
-            'county', 
+            'email',
+            'username',
+            'street_address_1',
+            'street_address_2',
+            'county',
             'town_or_City',
             'postcode',
             'phone_number',
         ]
-    
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')

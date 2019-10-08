@@ -3,17 +3,24 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import RegisterUserForm, RegisterUserChangeForm
 from .models import UserRegistrationModel
 
+
 class CustomUserRegisterAdmin(admin.ModelAdmin):
     add_form = RegisterUserForm
     form = RegisterUserChangeForm
     model = UserRegistrationModel
 
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
+    list_display = (
+        'username',
+        'email',
+        'first_name',
+        'last_name',
+        'is_staff',
+    )
 
     fields = (
-        'email', 
-        'username', 
-        'first_name', 
+        'email',
+        'username',
+        'first_name',
         'last_name',
         'street_address_1',
         'street_address_2',
@@ -27,7 +34,8 @@ class CustomUserRegisterAdmin(admin.ModelAdmin):
         'is_active',
         'date_joined',
         'groups',
-        'user_permissions', 
+        'user_permissions',
     )
+
 
 admin.site.register(UserRegistrationModel, CustomUserRegisterAdmin)
