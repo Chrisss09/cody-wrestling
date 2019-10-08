@@ -1,7 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
+from .models import UserRegistrationModel
+
+User = get_user_model()
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -10,29 +15,38 @@ class LoginForm(forms.Form):
 class RegisterUserForm(UserCreationForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
-    street_address1 = forms.CharField(label="Address Line 1", max_length=40, required=False)
-    street_address2 = forms.CharField(label="Address Line 2", max_length=40, required=False)
-    county = forms.CharField(max_length=40, required=False)
-    town_or_city = forms.CharField(max_length=40, required=False)
-    postcode = forms.CharField(max_length=20, required=True)
-    phone_number = forms.CharField(label='Contact Number', max_length=20)
 
     class Meta:
-        model = User
+        model = UserRegistrationModel
         fields = [
             'first_name',
             'last_name',
             'email', 
             'username', 
-            'password1', 
-            'password2', 
-            'street_address1', 
-            'street_address2', 
+            'street_address_1', 
+            'street_address_2', 
             'county', 
-            'town_or_city',
+            'town_or_City',
             'postcode',
+            'phone_number',
         ]
 
+class RegisterUserChangeForm(UserChangeForm):
+    class Meta:
+        model = UserRegistrationModel
+        fields = [
+            'first_name',
+            'last_name',
+            'email', 
+            'username', 
+            'street_address_1', 
+            'street_address_2', 
+            'county', 
+            'town_or_City',
+            'postcode',
+            'phone_number',
+        ]
+    
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
