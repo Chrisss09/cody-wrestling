@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import LoginForm, RegisterUserForm
+from .models import UserRegistrationModel
 
 def registration(request):
     if request.user.is_authenticated:
@@ -50,3 +51,8 @@ def logout(request):
     auth.logout(request)
     messages.success(request, 'You have logged out successfully')
     return redirect(reverse('home'))
+
+@login_required
+def user_profile(request):
+    user = UserRegistrationModel.objects.get(email=request.user.email)
+    return render(request, 'profile.html', {'profile': user})
