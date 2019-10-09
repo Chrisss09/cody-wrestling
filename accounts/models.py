@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UserRegistrationModel(AbstractUser):
+    email = models.EmailField(blank=False)
     street_address_1 = models.CharField(max_length=40, blank=False)
     street_address_2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
