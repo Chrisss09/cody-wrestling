@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
+{% load bootstrap_tags %}
+
 {% block content %}
 <h1>Login here</h1>
 
 <form method="POST">
     {% csrf_token %}
-    {{ login_form }}
-    <button type="submit">Login</button>
+    {{ login_form | as_bootstrap }}
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
 </form>
 
 <p>If you do not have an account, you can <a href="{% url 'registration' %}">register here.</a></p>
