@@ -5,12 +5,16 @@
 {% block content %}
 <h1>Login here</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ login_form | as_bootstrap }}
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    <a href="{% url 'home' %}" id="cancel" name="cancel" class="btn btn-outline-success my-2 my-sm-0">Cancel</a>
-</form>
+<div class='container'>
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            {{ login_form | as_bootstrap }}
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+            <a href="{% url 'home' %}" id="cancel" name="cancel" class="btn btn-outline-success my-2 my-sm-0">Cancel</a>
+        </form>
+    </div>
+</div>
 
 <div class="login-text">
     <p>If you do not have an account, you can <a href="{% url 'registration' %}">register here.</a></p>
