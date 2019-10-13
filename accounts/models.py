@@ -4,13 +4,13 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UserRegistrationModel(AbstractUser):
-    email = models.EmailField(blank=False)
+    email = models.EmailField(blank=False, unique=True)
     street_address_1 = models.CharField(max_length=40, blank=False)
     street_address_2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
     town_or_City = models.CharField(max_length=40, blank=False)
     postcode = models.CharField(max_length=20, blank=True)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20) 
     last_login = models.DateTimeField(
         blank=True, null=True, verbose_name='last login')
     is_superuser = models.BooleanField(
