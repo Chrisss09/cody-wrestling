@@ -1,4 +1,5 @@
 from django.test import TestCase
+from .models import UserRegistrationModel
 
 class TestViews(TestCase):
     def test_get_homepage(self):
