@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     # Added apps
     'accounts',
     'home',
-    'dvds',
 ]
 
 MIDDLEWARE = [
