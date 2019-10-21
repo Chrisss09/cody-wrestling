@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
-def products(request):
+def category(request):
     return render(request, 'company.html')
     
