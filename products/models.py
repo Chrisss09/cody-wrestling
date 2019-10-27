@@ -2,7 +2,7 @@ from django.db import models
 
 class Product(models.Model):
     title = models.CharField(max_length=250)
-    category = models.CharField(max_length=10)
+    category = models.CharField(max_length=10, verbose_name='Company')
     release_date = models.DateField()
     summary = models.CharField(max_length=150)
     description = models.TextField()
@@ -11,4 +11,4 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images')
 
     def __str__(self):
-        return self.title
+        return "{0}-{1}".format(self.title, self.category)
