@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    {% for product in dvds %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                    <p class="card-text">{{ product.summary }}</p>
+                    <p class="card-text">£{{ product.price }}</p>
+                    <div class="row">
+                        <div class="container">
+                            <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Read More</button>
+                            <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Add to basket</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to wishlist</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
