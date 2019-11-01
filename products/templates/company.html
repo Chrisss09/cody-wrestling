@@ -3,10 +3,10 @@
 {% block content %}
 <h1>Company</h1>
 
-    {% regroup product by category as category_list %}
+    {% regroup categories by category as category_list %}
     <ul>
     {% for category in category_list %}
-        <li><a href="#">{{ category.grouper }}</a></li>
+        <li><a href="{% url 'view_products' %}">{{ category.grouper }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
