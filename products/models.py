@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from ecommerce.utils import unique_slug_generator
 
 CATEGORY_CHOICES = (
     ('ROH', 'ROH'),
@@ -21,3 +23,9 @@ class Product(models.Model):
 
     def __str__(self):
         return "{0}-{1}".format(self.title, self.category)
+
+def slug_generator(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(slug_generator, sender=Product)

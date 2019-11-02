@@ -9,6 +9,10 @@ def view_products(request):
     company_range = Product.objects.all()
     return render(request, 'products.html', {'company_range': company_range})
 
-def view_more_info(request, dvd_id):
-    dvd_detail = get_object_or_404(Product, pk=dvd_id)
+def view_more_info(request, slug_id):
+    dvd_detail = Product.objects.filter(slug=slug_id)
+    if dvd_detail.exists():
+        dvd_detail = dvd_detail.first()
+    else:
+        return dvd_detail.DoesNotExist
     return render(request, 'dvdinfo.html', {'dvd': dvd_detail})

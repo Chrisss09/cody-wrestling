@@ -16,7 +16,7 @@
                     <p class="card-text">£{{ product.price }}</p>
                     <div class="row">
                         <div class="container">
-                            <button class="btn btn-outline-success my-2 my-sm-2" type="submit"><a href="{% url 'view_more_info' product.id %}">Read More</a></button>
+                            <button class="btn btn-outline-success my-2 my-sm-2" type="submit"><a href="{% url 'view_more_info' product.slug %}">Read More</a></button>
                             <button class="btn btn-outline-success my-2 my-sm-2" type="submit">Add to basket</button>
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to wishlist</button>
                         </div>
