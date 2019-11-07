@@ -6,7 +6,12 @@
     {% regroup categories by category as category_list %}
     <ul>
     {% for category in category_list %}
-        <li><a href="{% url 'view_products' %}">{{ category.grouper }}</a></li>
+        <li><a href="{% url 'view_products' category=category %}">{{ category.grouper }}</a></li>
     {% endfor %}
     </ul>
+    <!-- {% for category in object_list.0.get_choices %}
+        <li class="nav-item">
+            <a class="nav-link nav-filter" href="{% url 'view_products' category=category %}">{{ category }}</a>
+        </li>
+    {% endfor %} -->
 {% endblock %}
