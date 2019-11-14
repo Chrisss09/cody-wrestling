@@ -14,6 +14,8 @@ def view_products(request, category):
         'object_list': dvds,
         'category': category
     }
+    for key, value in context.items():
+        print(key, value)
     return render(request, 'products.html', context)
 
 # def view_more_info(request, slug_id):
