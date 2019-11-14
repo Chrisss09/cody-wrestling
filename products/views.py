@@ -1,21 +1,15 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Category
 from django.db.models import Q
-from django.core.paginator import Paginator
 
 def category(request):
-    categories = Product.objects.all()
+    categories = Category.objects.all()
     return render(request, 'company.html', {'categories': categories})
-
-
+    
 def view_products(request, category):
-    dvds = Product.objects.filter(Q(category__icontains=category))
     context = {
-        'object_list': dvds,
-        'category': category
+        'dvds': Product.objects.filter(Q(title__icontains=category))
     }
-    for key, value in context.items():
-        print(key, value)
     return render(request, 'products.html', context)
 
 # def view_more_info(request, slug_id):
